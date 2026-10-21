@@ -31,3 +31,18 @@ export interface AuthUser {
   role: Role | null;
   orgId: string | null;
 }
+export type MarketplaceProvider = "daraz" | "shopify" | "amazon" | "ebay";
+
+export interface MarketplaceConnectionDoc {
+  id: string;
+  orgId: string;
+  provider: MarketplaceProvider;
+  name: string;
+  settings: Record<string, string>;
+  secretEnvKey: string | null;
+  hasSecret: boolean;
+  isEnabled: boolean;
+  isActive: boolean;
+  createdAt: number;
+  updatedAt: number;
+}
