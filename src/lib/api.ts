@@ -16,7 +16,7 @@ import type { AuthUser, Role } from "@/types";
 function corsHeaders(): Record<string, string> {
   return {
     "Access-Control-Allow-Origin": process.env.FRONTEND_ORIGIN || "http://localhost:3000",
-    "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
     "Access-Control-Max-Age": "86400",
     Vary: "Origin",
@@ -72,7 +72,7 @@ function toErrorResponse(error: unknown) {
   const mapped = code ? FIREBASE_ERRORS[code] : undefined;
   if (mapped) return json({ error: mapped[1] }, mapped[0]);
 
-  console.error("API error:", error);
+  // Do not log raw errors: an upstream SDK error may contain request details.
   return json({ error: "Internal server error" }, 500);
 }
 

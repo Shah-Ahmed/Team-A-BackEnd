@@ -31,7 +31,13 @@ export interface AuthUser {
   role: Role | null;
   orgId: string | null;
 }
-export type MarketplaceProvider = "daraz" | "shopify" | "amazon" | "ebay";
+export type MarketplaceProvider =
+  | "shopify"
+  | "amazon"
+  | "ebay"
+  | "woocommerce"
+  | "etsy"
+  | "custom";
 
 export interface MarketplaceConnectionDoc {
   id: string;
@@ -39,7 +45,6 @@ export interface MarketplaceConnectionDoc {
   provider: MarketplaceProvider;
   name: string;
   settings: Record<string, string>;
-  secretEnvKey: string | null;
   hasSecret: boolean;
   isEnabled: boolean;
   isActive: boolean;
